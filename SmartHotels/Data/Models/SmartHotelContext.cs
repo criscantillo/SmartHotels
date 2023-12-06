@@ -69,6 +69,9 @@ public partial class SmartHotelContext : DbContext
             entity.Property(e => e.Address)
                 .HasMaxLength(200)
                 .HasColumnName("address");
+            entity.Property(e => e.City)
+                .HasMaxLength(80)
+                .HasColumnName("city");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .HasColumnName("name");
@@ -105,9 +108,6 @@ public partial class SmartHotelContext : DbContext
             entity.Property(e => e.RoomId).HasColumnName("room_id");
             entity.Property(e => e.BasePrice).HasColumnName("base_price");
             entity.Property(e => e.Capacity).HasColumnName("capacity");
-            entity.Property(e => e.City)
-                .HasMaxLength(80)
-                .HasColumnName("city");
             entity.Property(e => e.HotelId).HasColumnName("hotel_id");
             entity.Property(e => e.Location)
                 .HasMaxLength(20)

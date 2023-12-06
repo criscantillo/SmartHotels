@@ -13,7 +13,6 @@ public partial class Room
 
     public short? Type { get; set; }
 
-    public string? City { get; set; }
 
     public short? Capacity { get; set; }
 

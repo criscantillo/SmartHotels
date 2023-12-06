@@ -1,4 +1,4 @@
-﻿namespace SmartHotels.Domain.ReservationAggregate
+﻿namespace SmartHotels.DTOs
 {
     public class Reservation
     {
