@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartHotels.Infrastructure.Models;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace SmartHotels.Data.SeedWork
 {
@@ -34,6 +36,12 @@ namespace SmartHotels.Data.SeedWork
         public async Task<IEnumerable<TEntity>> GetAll()
         {
             IEnumerable<TEntity> lstData = await _dbSet.ToListAsync();
+            return lstData;
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllWhitFilter(Expression<Func<TEntity, bool>> filter)
+        {
+            IEnumerable<TEntity> lstData = await _dbSet.Where(filter).ToListAsync();
             return lstData;
         }
 

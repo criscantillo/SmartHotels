@@ -9,7 +9,7 @@
         public string UserId { get; set; } = string.Empty;
         public double TotalPrice { get; set; }
         public EmergencyConcact EmergencyConcact { get; set; } = new EmergencyConcact();
-        public IList<Guest> Guests { get; set; } = new List<Guest>();
+        public IList<GuestDto> Guests { get; set; } = new List<GuestDto>();
     }
 
     public class EmergencyConcact 

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SmartHotels.Data.SeedWork;
 using SmartHotels.DTOs;
 using SmartHotels.Infrastructure.Models;
-using System.Collections.Generic;
 
 namespace SmartHotels.Application.Controllers
 {
@@ -64,7 +63,9 @@ namespace SmartHotels.Application.Controllers
         [ActionName(nameof(GetRooms))]
         public async Task<ActionResult<IEnumerable<Room>>> GetRooms(int hotelId)
         {
-            IEnumerable<Room> lstRooms = await _unitOfWork.Rooms.GetAll();
+            IEnumerable<Room> lstRooms =
+                await _unitOfWork.Rooms.GetAllWhitFilter(h => h.HotelId == hotelId);
+
             return Ok(lstRooms);
         }
 
