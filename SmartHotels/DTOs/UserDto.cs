@@ -1,6 +1,6 @@
 ﻿namespace SmartHotels.DTOs
 {
-    public class User
+    public class UserDto
     {
     }
 }

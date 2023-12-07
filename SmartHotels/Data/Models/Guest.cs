@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SmartHotels.Infrastructure.Models;
+namespace SmartHotels.Data.Models;
 
 public partial class Guest
 {
     public int GuestId { get; set; }
+
     public string? UserId { get; set; }
 
     public string? FirstName { get; set; }

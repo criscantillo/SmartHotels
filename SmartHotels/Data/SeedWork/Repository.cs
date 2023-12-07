@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmartHotels.Infrastructure.Models;
-using System.Collections.Generic;
+using SmartHotels.Data.Models;
 using System.Linq.Expressions;
 
 namespace SmartHotels.Data.SeedWork

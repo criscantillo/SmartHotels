@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SmartHotels.Data.Models;
 using SmartHotels.Data.SeedWork;
 using SmartHotels.DTOs;
-using SmartHotels.Infrastructure.Models;
 
 namespace SmartHotels.Application.Controllers
 {

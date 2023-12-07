@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using SmartHotels.Data.Models;
 using SmartHotels.DTOs;
-using SmartHotels.Infrastructure.Models;
 
 namespace SmartHotels.Utils
 {
@@ -11,6 +11,7 @@ namespace SmartHotels.Utils
             CreateMap<HotelDto, Hotel>().ReverseMap();
             CreateMap<RoomDto, Room>().ReverseMap();
             CreateMap<GuestDto, Guest>().ReverseMap();
+            CreateMap<ReservationDto, Reservation>().ReverseMap();
         }
     }
 }

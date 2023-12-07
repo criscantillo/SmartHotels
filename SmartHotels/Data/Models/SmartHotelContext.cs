@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace SmartHotels.Infrastructure.Models;
+namespace SmartHotels.Data.Models;
 
 public partial class SmartHotelContext : DbContext
 {
@@ -14,14 +14,6 @@ public partial class SmartHotelContext : DbContext
         : base(options)
     {
     }
-
-    public virtual DbSet<Guest> Guests { get; set; }
-
-    public virtual DbSet<Hotel> Hotels { get; set; }
-
-    public virtual DbSet<Reservation> Reservations { get; set; }
-
-    public virtual DbSet<Room> Rooms { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -75,6 +67,9 @@ public partial class SmartHotelContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("name");
             entity.Property(e => e.Stars).HasColumnName("stars");
+            entity.Property(e => e.UserId)
+                .HasMaxLength(30)
+                .HasColumnName("user_id");
         });
 
         modelBuilder.Entity<Reservation>(entity =>
@@ -84,13 +79,23 @@ public partial class SmartHotelContext : DbContext
             entity.ToTable("reservation");
 
             entity.Property(e => e.ReserveId).HasColumnName("reserve_id");
+            entity.Property(e => e.EmergencyContactName)
+                .HasMaxLength(100)
+                .HasColumnName("emergency_contact_name");
+            entity.Property(e => e.EmergencyContactPhone)
+                .HasMaxLength(20)
+                .HasColumnName("emergency_contact_phone");
             entity.Property(e => e.FromDate)
                 .HasColumnType("date")
                 .HasColumnName("from_date");
-            entity.Property(e => e.MaxGuest).HasColumnName("max_guest");
+            entity.Property(e => e.GuestIds)
+                .HasMaxLength(200)
+                .HasColumnName("guest_ids");
+            entity.Property(e => e.HotelId).HasColumnName("hotel_id");
             entity.Property(e => e.ReserveAt)
                 .HasColumnType("date")
                 .HasColumnName("reserve_at");
+            entity.Property(e => e.RoomId).HasColumnName("room_id");
             entity.Property(e => e.ToDate)
                 .HasColumnType("date")
                 .HasColumnName("to_date");
@@ -105,6 +110,7 @@ public partial class SmartHotelContext : DbContext
             entity.ToTable("room");
 
             entity.Property(e => e.RoomId).HasColumnName("room_id");
+            entity.Property(e => e.Active).HasColumnName("active");
             entity.Property(e => e.BasePrice).HasColumnName("base_price");
             entity.Property(e => e.Capacity).HasColumnName("capacity");
             entity.Property(e => e.HotelId).HasColumnName("hotel_id");
