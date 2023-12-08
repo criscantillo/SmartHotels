@@ -12,6 +12,7 @@ namespace SmartHotels.Utils
             CreateMap<RoomDto, Room>().ReverseMap();
             CreateMap<GuestDto, Guest>().ReverseMap();
             CreateMap<ReservationDto, Reservation>().ReverseMap();
+            CreateMap<UserAppDto, UserApp>().ReverseMap();
         }
     }
 }

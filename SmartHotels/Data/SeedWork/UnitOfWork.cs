@@ -9,6 +9,7 @@ namespace SmartHotels.Data.SeedWork
         private readonly IRepository<Room> _roomRepository;
         private readonly IRepository<Guest> _guestRepository;
         private readonly IRepository<Reservation> _reservationRepository;
+        private readonly IRepository<UserApp> _userRepository;
         public IRepository<Hotel> Hotels {
             get
             {
@@ -40,6 +41,14 @@ namespace SmartHotels.Data.SeedWork
             }
         }
 
+        public IRepository<UserApp> Users
+        {
+            get
+            {
+                return _userRepository;
+            }
+        }
+
         public UnitOfWork(SmartHotelContext context)
         {
             _context = context;
@@ -47,6 +56,7 @@ namespace SmartHotels.Data.SeedWork
             _roomRepository = new Repository<Room>(_context);
             _guestRepository = new Repository<Guest>(_context);
             _reservationRepository = new Repository<Reservation>(_context);
+            _userRepository = new Repository<UserApp>(_context);
         }
 
         public async Task<int> Save()

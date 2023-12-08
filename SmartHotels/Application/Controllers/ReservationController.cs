@@ -13,15 +13,18 @@ namespace SmartHotels.Application.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ISearchRoomRepository _searchRoomRepository;
+        private readonly IReservationRepository _reservationRoomRepository;
 
         public ReservationController(
             IUnitOfWork unitOfWork, 
             IMapper mapper,
-            ISearchRoomRepository searchRoomRepository)
+            ISearchRoomRepository searchRoomRepository,
+            IReservationRepository reservationRoomRepository)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _searchRoomRepository = searchRoomRepository;
+            _reservationRoomRepository = reservationRoomRepository;
         }
 
         [HttpGet]
@@ -30,6 +33,16 @@ namespace SmartHotels.Application.Controllers
         {
             IEnumerable<Reservation> lstReservation =
                 await _unitOfWork.Reservations.GetAll();
+
+            return Ok(lstReservation);
+        }
+
+        [HttpGet("userId")]
+        [ActionName(nameof(GetReservationsByAdmin))]
+        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservationsByAdmin(string userId)
+        {
+            IEnumerable<Reservation> lstReservation =
+                await _reservationRoomRepository.GetReservationFromAdmin(userId);
 
             return Ok(lstReservation);
         }

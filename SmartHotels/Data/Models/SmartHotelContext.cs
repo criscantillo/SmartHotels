@@ -126,6 +126,25 @@ public partial class SmartHotelContext : DbContext
                 .HasConstraintName("FK_room_hotel");
         });
 
+        modelBuilder.Entity<UserApp>(entity =>
+        {
+            entity.HasKey(e => e.UserId).HasName("PK_user");
+
+            entity.ToTable("user_app");
+
+            entity.Property(e => e.UserId)
+                .HasMaxLength(30)
+                .HasColumnName("user_id");
+            entity.Property(e => e.UserActive).HasColumnName("user_active");
+            entity.Property(e => e.UserEmail)
+                .HasMaxLength(50)
+                .HasColumnName("user_email");
+            entity.Property(e => e.UserName)
+                .HasMaxLength(60)
+                .HasColumnName("user_name");
+            entity.Property(e => e.UserType).HasColumnName("user_type");
+        });
+
         OnModelCreatingPartial(modelBuilder);
     }
 
