@@ -59,6 +59,19 @@ namespace SmartHotels.Application.Controllers
             return Ok(hotel);
         }
 
+        [HttpPatch("active/{hotelId}")]
+        [ActionName(nameof(SetActiveHotel))]
+        public async Task<ActionResult<Hotel>> SetActiveHotel(int hotelId, bool active)
+        {
+            Hotel hotel = await _unitOfWork.Hotels.Get(hotelId);
+            hotel.Active = active;
+
+            _unitOfWork.Hotels.Update(hotel);
+            await _unitOfWork.Save();
+
+            return Ok(hotel);
+        }
+
         [HttpGet("{hotelId}/Room")]
         [ActionName(nameof(GetRooms))]
         public async Task<ActionResult<IEnumerable<Room>>> GetRooms(int hotelId)
@@ -97,6 +110,19 @@ namespace SmartHotels.Application.Controllers
             Room room = _mapper.Map<Room>(roomDto);
             room.HotelId = hotelId;
             room.RoomId = roomId;
+
+            _unitOfWork.Rooms.Update(room);
+            await _unitOfWork.Save();
+
+            return Ok(room);
+        }
+
+        [HttpPatch("Room/Active/{roomId}")]
+        [ActionName(nameof(SetActiveRoom))]
+        public async Task<ActionResult<Room>> SetActiveRoom(int roomId, bool active)
+        {
+            Room room = await _unitOfWork.Rooms.Get(roomId);
+            room.Active = active;
 
             _unitOfWork.Rooms.Update(room);
             await _unitOfWork.Save();
