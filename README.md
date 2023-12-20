@@ -9,3 +9,6 @@ Para algunos campos se definen tipos que simplifican el grabado y el acceso a lo
 
 - User.UserType (1.Usuario Admin, 2.Cliente)
 - Room.Type (1.Sencilla, 2.Doble, 3.Triple, 4.Familiar, 5.Suit)
+
+## Base de datos
+Crear la base de datos con el script SmartHotels.sql
